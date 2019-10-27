@@ -23,17 +23,12 @@ export class TodoItemGateway implements OnGatewayConnection, OnGatewayDisconnect
 		console.log(client.id, 'disconnected');
 	}
 
-	@SubscribeMessage('todoItem')
-	async onTodoItem(client, message) {
-		client.broadcast.emit('todoItem', message);
-	}
-
 	@SubscribeMessage('create')
-	async onCreate(@MessageBody() todoItem: ITodoItem, @ConnectedSocket() client: Socket) {
+	async onCreate(@MessageBody() todoItem: ITodoItem) {
 		// tslint:disable-next-line: no-console
 		console.log('created', todoItem);
 		const createdTodoItem = await this.listItemSVC.create(todoItem);
-		client.broadcast.emit('create', createdTodoItem);
+		this.server.emit('create', createdTodoItem);
 	}
 
 	@SubscribeMessage('update')

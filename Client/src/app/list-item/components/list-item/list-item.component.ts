@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatListOption } from '@angular/material';
 import { Subject } from 'rxjs';
@@ -11,12 +11,13 @@ import { IDispatchAction } from '../../interfaces/dispatch-action.interface';
 	templateUrl: './list-item.component.html',
 	styleUrls: ['./list-item.component.css']
 })
-export class ListItemComponent implements OnInit {
+export class ListItemComponent implements OnChanges {
 	formGroup: FormGroup = new FormGroup({});
 	@Input() todoItems: ITodoItem[];
 	@Output('action') dispatchAction = new Subject<IDispatchAction>();
 
-	ngOnInit(): void {
+	ngOnChanges(changes: SimpleChanges): void {
+		console.log(changes);
 		this.todoItems.forEach(todoItem => {
 			this.formGroup.addControl(todoItem.id, new FormControl(todoItem.value));
 		});
@@ -27,11 +28,9 @@ export class ListItemComponent implements OnInit {
 		const todoItem: ITodoItem = {
 			id: itemId,
 			checked: false,
-			mode: 'update',
+			mode: 'read',
 			value: ''
 		};
-		this.todoItems.push(todoItem);
-		this.formGroup.addControl(itemId, new FormControl(''));
 		this.dispatchAction.next({ type: 'create', payload: todoItem });
 	}
 
@@ -48,6 +47,9 @@ export class ListItemComponent implements OnInit {
 	}
 
 	onEdit(todoItem: ITodoItem) {
+		if (!this.formGroup.controls[todoItem.id]) {
+			this.formGroup.addControl(todoItem.id, new FormControl(''));
+		}
 		todoItem.mode = 'update';
 		this.dispatchAction.next({ type: 'update', payload: todoItem });
 	}
