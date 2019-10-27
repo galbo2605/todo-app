@@ -35,7 +35,6 @@ export class ListItemApiService {
 		});
 		this.socket.on('create', (todoItem: ITodoItem) => {
 			console.log('create', todoItem);
-			todoItem.mode = 'read';
 			this.todoItems.push(todoItem);
 			this.socketState$.next(this.todoItems);
 		});
