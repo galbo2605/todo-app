@@ -12,8 +12,7 @@ export const databaseProviders = [
       database: 'local',
       entities: [
           __dirname + '/../**/*.entity{.ts,.js}',
-      ],
-      synchronize: true,
+      ]
     }),
   },
 ];
