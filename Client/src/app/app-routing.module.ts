@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListItemComponent } from './list-item/list-item.component';
 
 const routes: Routes = [
-	{ path: '', component: ListItemComponent }
+	{ path: '', loadChildren: () => import('./list-item/core/list-item.module').then(m => m.ListItemModule) }
 ];
 
 @NgModule({

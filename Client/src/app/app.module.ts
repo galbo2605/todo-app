@@ -1,21 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { ListItemComponent } from './list-item/list-item.component';
 import { MatGridListModule, MatInputModule, MatListModule, MatButtonModule } from '@angular/material';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
-		AppComponent,
-		ListItemComponent
+		AppComponent
 	],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
+		HttpClientModule,
 		ReactiveFormsModule,
 		AppRoutingModule,
 		MatInputModule,

@@ -26,9 +26,11 @@
     "@nestjs/platform-express": "^6.7.2",
     "@nestjs/platform-socket.io": "^6.8.3",
     "@nestjs/websockets": "^6.8.3",
+    "mongodb": "^3.3.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
-    "rxjs": "^6.5.3"
+    "rxjs": "^6.5.3",
+    "typeorm": "^0.2.20"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.9.0",

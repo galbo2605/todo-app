@@ -10,7 +10,7 @@ mat-action-list {
 	flex-direction: row-reverse;
 }
 
-mat-selection-list {
+mat-selection-list, mat-list {
 	max-width: 60rem;
 	margin: 0 auto;
 }
