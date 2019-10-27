@@ -15,7 +15,7 @@ export class TodoItemGateway implements OnGatewayConnection, OnGatewayDisconnect
 		// tslint:disable-next-line: no-console
 		console.log(client.id, 'connected');
 		const todoItems = await this.listItemSVC.findAll();
-		client.emit('getList', todoItems);
+		client.emit('read', todoItems);
 	}
 
 	async handleDisconnect(@ConnectedSocket() client: Socket): Promise<void> {

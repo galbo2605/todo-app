@@ -39,6 +39,10 @@ export class ListItemApiService {
 			this.todoItems.push(todoItem);
 			this.socketState$.next(this.todoItems);
 		});
+		this.socket.on('read', tI => {
+			this.todoItems = tI;
+			this.socketState$.next(this.todoItems);
+		});
 		this.socket.on('update', (todoItem: ITodoItem) => {
 			console.log('update', todoItem);
 			todoItem.mode = 'read';
@@ -51,16 +55,6 @@ export class ListItemApiService {
 			const todoItemIndex = this.todoItems.findIndex(tI => tI.id === todoItemID);
 			this.todoItems.splice(todoItemIndex, 1);
 			this.socketState$.next(this.todoItems);
-		});
-	}
-
-	public async getListItems(): Promise<Observable<ITodoItem[]>> {
-		return new Promise((res, rej) => {
-			this.socket.on('getList', tI => {
-				this.todoItems = tI;
-				this.socketState$.next(tI);
-				res(of(this.todoItems));
-			});
 		});
 	}
 

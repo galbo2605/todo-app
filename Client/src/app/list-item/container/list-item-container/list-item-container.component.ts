@@ -18,7 +18,6 @@ export class ListItemContainerComponent implements OnInit, OnDestroy {
 
 	async ngOnInit(): Promise<void> {
 		this.todoItems$ = this.listItemAPISVC.socketState$.asObservable();
-		this.todoItems$ = await this.listItemAPISVC.getListItems();
 	}
 
 	ngOnDestroy(): void {
