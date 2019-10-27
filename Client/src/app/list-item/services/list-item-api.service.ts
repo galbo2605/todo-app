@@ -51,8 +51,7 @@ export class ListItemApiService {
 		});
 		this.socket.on('delete', (todoItemID: string) => {
 			console.log('delete', todoItemID);
-			const todoItemIndex = this.todoItems.findIndex(tI => tI.id === todoItemID);
-			this.todoItems.splice(todoItemIndex, 1);
+			this.todoItems = this.todoItems.filter(tI => tI.id !== todoItemID);
 			this.socketState$.next(this.todoItems);
 		});
 	}

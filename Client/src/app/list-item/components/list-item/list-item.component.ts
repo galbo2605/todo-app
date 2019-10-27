@@ -55,7 +55,6 @@ export class ListItemComponent implements OnChanges {
 	}
 
 	onDelete(todoItem: ITodoItem) {
-		this.todoItems = this.todoItems.filter(tI => tI.id !== todoItem.id);
 		this.dispatchAction.next({ type: 'delete', payload: todoItem });
 	}
 

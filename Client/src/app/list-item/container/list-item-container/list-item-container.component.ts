@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { takeWhile } from 'rxjs/operators';
 import { ITodoItem } from '../../interfaces/list-item.interface';
 import { ListItemApiService } from '../../services/list-item-api.service';
 import { IDispatchAction } from '../../interfaces/dispatch-action.interface';
@@ -12,16 +11,14 @@ import { IDispatchAction } from '../../interfaces/dispatch-action.interface';
 })
 export class ListItemContainerComponent implements OnInit, OnDestroy {
 	todoItems$: Observable<ITodoItem[]>;
-	componentActive = true;
 
 	constructor(private listItemAPISVC: ListItemApiService) { }
 
-	async ngOnInit(): Promise<void> {
+	ngOnInit(): void {
 		this.todoItems$ = this.listItemAPISVC.socketState$.asObservable();
 	}
 
 	ngOnDestroy(): void {
-		this.componentActive = false;
 		this.listItemAPISVC.disconnect();
 	}
 

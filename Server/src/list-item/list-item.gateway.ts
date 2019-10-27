@@ -44,7 +44,7 @@ export class TodoItemGateway implements OnGatewayConnection, OnGatewayDisconnect
 		// tslint:disable-next-line: no-console
 		console.log('deleted', todoItemID);
 		await this.listItemSVC.delete(todoItemID);
-		client.broadcast.emit('delete', todoItemID);
+		this.server.emit('delete', todoItemID);
 	}
 
 }
