@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import * as io from 'socket.io-client';
 
 import { ITodoItem } from '../interfaces/list-item.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
 	providedIn: 'root'
@@ -23,7 +24,7 @@ export class ListItemApiService {
 
 	private baseURI(): string {
 		const protocol = 'http';
-		const host = 'localhost';
+		const host = environment.host;
 		const port = '4000';
 		return `${protocol}://${host}:${port}`;
 	}
