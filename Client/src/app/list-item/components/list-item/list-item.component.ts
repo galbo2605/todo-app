@@ -23,7 +23,7 @@ export class ListItemComponent implements OnChanges {
 		});
 	}
 
-	onAdd() {
+	onAdd(): void {
 		const itemId = Date.now().toString();
 		const todoItem: ITodoItem = {
 			id: itemId,
@@ -34,7 +34,7 @@ export class ListItemComponent implements OnChanges {
 		this.dispatchAction.next({ type: 'create', payload: todoItem });
 	}
 
-	onInput(id: string) {
+	onInput(id: string): void {
 		const todoItemValue = this.formGroup.controls[id].value;
 		const todoItem = this.todoItems.find(tI => tI.id === id);
 		todoItem.value = todoItemValue;
@@ -42,11 +42,11 @@ export class ListItemComponent implements OnChanges {
 		this.dispatchAction.next({ type: 'update', payload: todoItem });
 	}
 
-	onCancel(todoItem: ITodoItem) {
+	onCancel(todoItem: ITodoItem): void {
 		todoItem.mode = 'read';
 	}
 
-	onEdit(todoItem: ITodoItem) {
+	onEdit(todoItem: ITodoItem): void {
 		if (!this.formGroup.controls[todoItem.id]) {
 			this.formGroup.addControl(todoItem.id, new FormControl(''));
 		}
@@ -54,11 +54,11 @@ export class ListItemComponent implements OnChanges {
 		this.dispatchAction.next({ type: 'update', payload: todoItem });
 	}
 
-	onDelete(todoItem: ITodoItem) {
+	onDelete(todoItem: ITodoItem): void {
 		this.dispatchAction.next({ type: 'delete', payload: todoItem });
 	}
 
-	onSelection(option: MatListOption, todoItem: ITodoItem) {
+	onSelection(option: MatListOption, todoItem: ITodoItem): void {
 		todoItem.checked = option.selected;
 		this.dispatchAction.next({ type: 'update', payload: todoItem });
 	}

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
+
+import { Subject } from 'rxjs';
+
 import * as io from 'socket.io-client';
+
 import { ITodoItem } from '../interfaces/list-item.interface';
 
 @Injectable({

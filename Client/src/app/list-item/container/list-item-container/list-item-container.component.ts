@@ -1,13 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { ITodoItem } from '../../interfaces/list-item.interface';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+
+import { Observable } from 'rxjs';
+
 import { ListItemApiService } from '../../services/list-item-api.service';
+
+import { ITodoItem } from '../../interfaces/list-item.interface';
 import { IDispatchAction } from '../../interfaces/dispatch-action.interface';
 
 @Component({
 	selector: 'app-list-item-container',
 	templateUrl: './list-item-container.component.html',
-	styleUrls: ['./list-item-container.component.css']
+	styleUrls: ['./list-item-container.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListItemContainerComponent implements OnInit, OnDestroy {
 	todoItems$: Observable<ITodoItem[]>;

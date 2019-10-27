@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Repository, getMongoManager } from 'typeorm';
+import { Repository } from 'typeorm';
 import { TodoItemEntity } from '../../db/entities/todo-item.entity';
 import { ITodoItem } from '../interface/todoi-item.interface';
 
