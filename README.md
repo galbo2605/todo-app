@@ -1,5 +1,9 @@
 # todo-app
 
+MongoDB:
+1. Start Mongo DB server on port 27017.
+2. Create a DB named `local`.
+
 Dev environment:
 1. cd to Client folder.
 2. run `ng serve`.
